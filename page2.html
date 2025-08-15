@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 2</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: purple;
+            animation: glowHeading 2s infinite;
+        }
+
+        @keyframes glowHeading {
+            0% { text-shadow: 0 0 5px purple; }
+            50% { text-shadow: 0 0 20px #aa00ff; }
+            100% { text-shadow: 0 0 5px purple; }
+        }
+
+        button {
+            background: #6600aa;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px #aa00ff;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: #aa00ff;
+            box-shadow: 0 0 25px #aa00ff;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(170,0,255,0.2), transparent 70%);
+            animation: moveBG 15s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveBG {
+            0% { transform: rotate(0deg) translate(0,0); }
+            100% { transform: rotate(360deg) translate(50px,50px); }
+        }
+
+        img { margin-top: 20px; width:200px; height:auto; border-radius:10px; }
+    </style>
+</head>
+<body>
+    <h1>Page 2</h1>
+    <p>heres few ppl and how i see them.</p>
+
+    <h2 id="nameDisplay"></h2>
+    <img id="picDisplay" src="" alt="">
+
+    <button id="cycleBtn">Start</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("cycleBtn");
+    const nameDisplay = document.getElementById("nameDisplay");
+    const picDisplay = document.getElementById("picDisplay");
+
+    const data = [
+        {name: "kryz", img: "https://i.pinimg.com/736x/8c/3d/f5/8c3df517f607dca2a69e1c0d6905d5ef.jpg"},
+        {name: "jestc", img: "https://i.pinimg.com/736x/73/b0/ff/73b0ffd592cdd81598f086ce8d182205.jpg"},
+        {name: "mujib", img: "https://i.pinimg.com/1200x/eb/0d/2c/eb0d2c7abb1ac7d1a3cc612d2a779449.jpg"},
+        {name: "vyre", img: "https://i.pinimg.com/736x/f8/a0/f4/f8a0f4d074fee8c31ee630643676892d.jpg"},
+        {name: "Shiro", img: "https://i.pinimg.com/736x/a4/76/b3/a476b3f4aa4477f76fd449c198b14d2f.jpg"},
+        {name: "leyley < smash>", img: "https://i.pinimg.com/736x/61/87/9c/61879c67280c2d357dabb6e480fe18f7.jpg"},
+        {name: "renfold", img: "https://i.pinimg.com/736x/3f/b1/eb/3fb1ebb8f5ff167f97ce9e9c1f3bfe4d.jpg"}
+    ];
+
+    let index = 0;
+
+    btn.onclick = function() {
+        nameDisplay.textContent = data[index].name;
+        picDisplay.src = data[index].img;
+        index++;
+        if(index >= data.length) index = 0; // loop back to 1
+    }
+});
+</script>
+
+</body>
+</html>
