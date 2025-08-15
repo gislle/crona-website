@@ -63,6 +63,19 @@
 
         img { margin-top: 20px; width:200px; height:auto; border-radius:10px; }
     </style>
+
+    <script>
+        // Cache-busting script
+        const version = Date.now();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            link.href = link.href + '?v=' + version;
+        });
+        document.querySelectorAll('script[src]').forEach(script => {
+            if (!script.src.includes('v=')) {
+                script.src = script.src + '?v=' + version;
+            }
+        });
+    </script>
 </head>
 <body>
     <h1>Page 2</h1>
@@ -73,41 +86,38 @@
 
     <button id="cycleBtn">Start</button>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const btn = document.getElementById("cycleBtn");
-    const nameDisplay = document.getElementById("nameDisplay");
-    const picDisplay = document.getElementById("picDisplay");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const btn = document.getElementById("cycleBtn");
+            const nameDisplay = document.getElementById("nameDisplay");
+            const picDisplay = document.getElementById("picDisplay");
 
-    const data = [
-        {name: "kryz", img: "https://i.pinimg.com/736x/8c/3d/f5/8c3df517f607dca2a69e1c0d6905d5ef.jpg"},
-        {name: "ken >hes autistic but chill<", img: "https://i.pinimg.com/1200x/4f/f3/9b/4ff39b209f61c2d487eada5d302ce2f3.jpg"},
-        {name: "taki", img: "https://i.pinimg.com/736x/24/da/5b/24da5ba2d71a413d432168c706c0785f.jpg"},
-        {name: "kien", img: "https://i.pinimg.com/1200x/13/8d/21/138d2171e25391aef87dd96379feca1d.jpg"},
-        {name: "jestc", img: "https://i.pinimg.com/736x/73/b0/ff/73b0ffd592cdd81598f086ce8d182205.jpg"},
-        {name: "silver", img: "https://i.pinimg.com/736x/58/82/ae/5882aea381893361f1910de3882efc66.jpg"},
-        {name: "vex <dk who invited that mf>", img: "https://i.pinimg.com/736x/c9/88/34/c98834ca744cf0cd0f514cd7784ff134.jpg"},
-        {name: "grimmjow cuz grimmjow", img: "https://i.pinimg.com/736x/83/86/96/838696e38ee28e474e293d320bc42c5e.jpg"},
-        {name: "justice i think he like undertail", img: "https://i.pinimg.com/736x/d9/b6/93/d9b693b54cbf8f0087962c684c2b3a15.jpg"},
-        {name: "vyre", img: "https://i.pinimg.com/736x/f8/a0/f4/f8a0f4d074fee8c31ee630643676892d.jpg"},
-        {name: "Shiro", img: "https://i.pinimg.com/736x/a4/76/b3/a476b3f4aa4477f76fd449c198b14d2f.jpg"},
-        {name: "leyley < smash>", img: "https://i.pinimg.com/736x/61/87/9c/61879c67280c2d357dabb6e480fe18f7.jpg"},
-        {name: "renfold", img: "https://i.pinimg.com/736x/3f/b1/eb/3fb1ebb8f5ff167f97ce9e9c1f3bfe4d.jpg"}
-    ];
-console.log("Total items:", data.length);
-    let index = 0;
+            const data = [
+                {name: "kryz", img: "https://i.pinimg.com/736x/8c/3d/f5/8c3df517f607dca2a69e1c0d6905d5ef.jpg"},
+                {name: "ken >hes autistic but chill<", img: "https://i.pinimg.com/1200x/4f/f3/9b/4ff39b209f61c2d487eada5d302ce2f3.jpg"},
+                {name: "taki", img: "https://i.pinimg.com/736x/24/da/5b/24da5ba2d71a413d432168c706c0785f.jpg"},
+                {name: "kien", img: "https://i.pinimg.com/1200x/13/8d/21/138d2171e25391aef87dd96379feca1d.jpg"},
+                {name: "jestc", img: "https://i.pinimg.com/736x/73/b0/ff/73b0ffd592cdd81598f086ce8d182205.jpg"},
+                {name: "silver", img: "https://i.pinimg.com/736x/58/82/ae/5882aea381893361f1910de3882efc66.jpg"},
+                {name: "vex <dk who invited that mf>", img: "https://i.pinimg.com/736x/c9/88/34/c98834ca744cf0cd0f514cd7784ff134.jpg"},
+                {name: "grimmjow cuz grimmjow", img: "https://i.pinimg.com/736x/83/86/96/838696e38ee28e474e293d320bc42c5e.jpg"},
+                {name: "justice i think he like undertail", img: "https://i.pinimg.com/736x/d9/b6/93/d9b693b54cbf8f0087962c684c2b3a15.jpg"},
+                {name: "vyre", img: "https://i.pinimg.com/736x/f8/a0/f4/f8a0f4d074fee8c31ee630643676892d.jpg"},
+                {name: "Shiro", img: "https://i.pinimg.com/736x/a4/76/b3/a476b3f4aa4477f76fd449c198b14d2f.jpg"},
+                {name: "leyley < smash>", img: "https://i.pinimg.com/736x/61/87/9c/61879c67280c2d357dabb6e480fe18f7.jpg"},
+                {name: "renfold", img: "https://i.pinimg.com/736x/3f/b1/eb/3fb1ebb8f5ff167f97ce9e9c1f3bfe4d.jpg"}
+            ];
 
-    btn.onclick = function() {
-        nameDisplay.textContent = data[index].name;
-        picDisplay.src = data[index].img;
-        index++;
-        if(index >= data.length) index = 0; // loop back to 1
-    }
-});
-</script>
+            let index = 0;
 
+            btn.onclick = function() {
+                nameDisplay.textContent = data[index].name;
+                picDisplay.src = data[index].img;
+                index++;
+                if(index >= data.length) index = 0; // loop back
+                btn.textContent = index + 1; // show current number
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
