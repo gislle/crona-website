@@ -61,6 +61,19 @@
             100% { transform: rotate(360deg) translate(50px,50px); }
         }
     </style>
+
+    <script>
+        // Cache-busting script
+        const version = Date.now();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            link.href = link.href + '?v=' + version;
+        });
+        document.querySelectorAll('script[src]').forEach(script => {
+            if (!script.src.includes('v=')) {
+                script.src = script.src + '?v=' + version;
+            }
+        });
+    </script>
 </head>
 <body>
     <h1>meaow</h1>
@@ -70,4 +83,5 @@
     <button onclick="window.location.href='page2.html'">Go to Page 2</button>
 </body>
 </html>
+
 
